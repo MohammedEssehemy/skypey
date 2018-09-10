@@ -1,0 +1,14 @@
+.Message {
+  margin: 1rem auto;
+  width: 80%;
+}
+.Message__input {
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+  border: 0;
+  color: #fff;
+  font-size: 1rem;
+  outline: 0;
+  padding: 1rem;
+  width: 100%;
+}
