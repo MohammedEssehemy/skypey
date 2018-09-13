@@ -1,5 +1,5 @@
 import React from 'react';
-import {setTypingValue, sendMessage} from './../actions/index';
+import {setTypingValue, sendMessage, setEditMessage, editMessage} from './../actions/index';
 import store from './../store';
 import './MessageInput.css';
 
@@ -7,8 +7,12 @@ const MessageInput = ({ value }) => {
   const state = store.getState();
   const handleSubmit = e => {
     e.preventDefault();
-    const { typing, activeUserId } = state;
-    store.dispatch(sendMessage(typing, activeUserId));
+    const { typing, activeUserId, editMessageNo } = state;
+    if(!editMessageNo) store.dispatch(sendMessage(typing, activeUserId));
+    else {
+      if(typing) store.dispatch(editMessage(typing, activeUserId, editMessageNo));
+      store.dispatch(setEditMessage(null));
+    }
   };
   const handleChange = e => {
     store.dispatch(setTypingValue(e.target.value));
